@@ -1,18 +1,18 @@
 plugins:
-  docs_enabled:
+  resources_enabled:
     default: false
     client: true
-  docs_categories:
+  resources_categories:
     type: category_list
     default: ""
     client: true
-  docs_tags:
+  resources_tags:
     type: tag_list
     default: ""
     client: true
-  docs_add_solved_filter:
+  resources_add_solved_filter:
     default: false
     client: true
-  docs_add_to_top_menu:
+  resources_add_to_top_menu:
     default: false
     client: true

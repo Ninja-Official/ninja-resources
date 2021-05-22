@@ -1,7 +1,7 @@
 en:
   site_settings:
-    docs_enabled: "Enable the Docs Plugin"
-    docs_categories: "A list of category slugs to include in docs"
-    docs_tags: "A list of tags to include in docs"
-    docs_add_solved_filter: "Adds a filter for solved topics -- requires Discourse Solved to be installed and enabled"
-    docs_add_to_top_menu: "Adds a link to the top menu to navigate to the Docs view"
+    resources_enabled: "Enable the Resources Plugin"
+    resources_categories: "A list of category slugs to include in resources"
+    resources_tags: "A list of tags to include in resources"
+    resources_add_solved_filter: "Adds a filter for solved topics -- requires Discourse Solved to be installed and enabled"
+    resources_add_to_top_menu: "Adds a link to the top menu to navigate to the Resources view"

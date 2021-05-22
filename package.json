@@ -1,7 +1,7 @@
 {
-  "name": "discourse-docs",
+  "name": "discourse-resources",
   "version": "0.1",
-  "repository": "https://github.com/discourse/discourse-docs",
+  "repository": "https://github.com/discourse/discourse-resources",
   "author": "Discourse",
   "license": "MIT",
   "devDependencies": {

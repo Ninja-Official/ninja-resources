@@ -1,34 +1,34 @@
 {{#conditional-loading-spinner condition=isLoading}}
   {{#if emptyTopics}}
-    <span class="no-topics-found">{{html-safe (i18n "docs.no_topics")}}</span>
+    <span class="no-topics-found">{{html-safe (i18n "resources.no_topics")}}</span>
   {{else}}
-    <div class="docs-browse">
+    <div class="resources-browse">
       {{#if site.mobileView}}
         {{#unless selectedTopic}}
-          {{d-button class="docs-expander" icon=(if expandedFilters "angle-up" "angle-down") action=(action "toggleFilters") label="docs.filter_button"}}
+          {{d-button class="resources-expander" icon=(if expandedFilters "angle-up" "angle-down") action=(action "toggleFilters") label="resources.filter_button"}}
         {{/unless}}
       {{/if}}
 
-      <div class="docs-filters">
+      <div class="resources-filters">
         {{#if expandedFilters}}
           {{#if canFilterSolved}}
-            <div class="docs-items docs-solved">
-              <label class="checkbox-label docs-item">
+            <div class="resources-items resources-solved">
+              <label class="checkbox-label resources-item">
                 {{input
                   type="checkbox"
                   checked=(readonly filterSolved)
                   change=(action "onChangeFilterSolved" value="target.checked")
                 }}
-                {{i18n "docs.filter_solved"}}
+                {{i18n "resources.filter_solved"}}
               </label>
             </div>
           {{/if}}
 
           {{#if categories}}
-            <div class="docs-items docs-categories">
-              <h3>{{i18n "docs.categories"}}</h3>
+            <div class="resources-items resources-categories">
+              <h3>{{i18n "resources.categories"}}</h3>
               {{#each categories as |category|}}
-                {{docs-category
+                {{resources-category
                   category=category
                   selectCategory=(action "updateSelectedCategories" category)
                 }}
@@ -37,10 +37,10 @@
           {{/if}}
 
           {{#if tags}}
-            <div class="docs-items docs-tags">
-              <h3>{{i18n "docs.tags"}}</h3>
+            <div class="resources-items resources-tags">
+              <h3>{{i18n "resources.tags"}}</h3>
               {{#each tags as |tag|}}
-                {{docs-tag
+                {{resources-tag
                   tag=tag
                   selectTag=(action "updateSelectedTags" tag)
                 }}
@@ -52,25 +52,25 @@
 
       {{#if selectedTopic}}
         {{#conditional-loading-spinner condition=isTopicLoading}}
-          {{docs-topic topic=topic return=(action "returnToList")}}
+          {{resources-topic topic=topic return=(action "returnToList")}}
         {{/conditional-loading-spinner}}
       {{else}}
-        <div class="docs-results">
+        <div class="resources-results">
           {{#if isSearchingOrFiltered}}
             {{#if emptyResults}}
               <div class="result-count no-result">
                 {{i18n "search.no_results"}}
               </div>
-              {{plugin-outlet name="after-docs-empty-results"}}
+              {{plugin-outlet name="after-resources-empty-results"}}
             {{else}}
               <div class="result-count">
-                {{i18n "docs.search.results" count=topicCount}}
+                {{i18n "resources.search.results" count=topicCount}}
               </div>
             {{/if}}
           {{/if}}
 
           {{#unless emptyResults}}
-            {{docs-topic-list
+            {{resources-topic-list
               topics=topics
               ascending=ascending
               order=orderColumn

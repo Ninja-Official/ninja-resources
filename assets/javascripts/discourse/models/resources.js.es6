@@ -2,9 +2,9 @@ import EmberObject from "@ember/object";
 import { ajax } from "discourse/lib/ajax";
 import Topic from "discourse/models/topic";
 
-const Docs = EmberObject.extend({});
+const Resources = EmberObject.extend({});
 
-Docs.reopenClass({
+Resources.reopenClass({
   list(params) {
     let filters = [];
 
@@ -33,7 +33,7 @@ Docs.reopenClass({
       filters.push(`topic=${params.selectedTopic}`);
     }
 
-    return ajax(`/docs.json?${filters.join("&")}`).then((data) => {
+    return ajax(`/resources.json?${filters.join("&")}`).then((data) => {
       data.topics.topic_list.topics = data.topics.topic_list.topics.map(
         (topic) => Topic.create(topic)
       );
@@ -52,4 +52,4 @@ Docs.reopenClass({
   },
 });
 
-export default Docs;
+export default Resources;

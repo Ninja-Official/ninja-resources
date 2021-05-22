@@ -2,7 +2,7 @@ import Controller, { inject as controller } from "@ember/controller";
 import discourseComputed, { on } from "discourse-common/utils/decorators";
 import { action } from "@ember/object";
 import { alias, equal, readOnly } from "@ember/object/computed";
-import Docs from "discourse/plugins/discourse-docs/discourse/models/docs";
+import Resources from "discourse/plugins/discourse-resources/discourse/models/resources";
 import { getOwner } from "@ember/application";
 
 export default Controller.extend({
@@ -70,7 +70,7 @@ export default Controller.extend({
   canFilterSolved() {
     return (
       this.siteSettings.solved_enabled &&
-      this.siteSettings.docs_add_solved_filter
+      this.siteSettings.resources_add_solved_filter
     );
   },
 
@@ -166,7 +166,7 @@ export default Controller.extend({
     if (this.canLoadMore && !this.isLoadingMore) {
       this.set("isLoadingMore", true);
 
-      Docs.loadMore(this.loadMoreUrl).then((result) => {
+      Resources.loadMore(this.loadMoreUrl).then((result) => {
         const topics = this.topics.concat(result.topics.topic_list.topics);
 
         this.setProperties({
@@ -190,6 +190,6 @@ export default Controller.extend({
   @action
   returnToList() {
     this.set("selectedTopic", null);
-    getOwner(this).lookup("router:main").transitionTo("docs");
+    getOwner(this).lookup("router:main").transitionTo("resources");
   },
 });

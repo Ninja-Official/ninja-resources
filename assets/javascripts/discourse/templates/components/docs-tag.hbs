@@ -1,4 +1,4 @@
-<a href {{action this.selectTag}} class="docs-item docs-tag {{if tag.active "selected"}} {{if subtag "subtag"}}">
+<a href {{action this.selectTag}} class="resources-item resources-tag {{if tag.active "selected"}} {{if subtag "subtag"}}">
   {{#unless tag.active}}
     {{d-icon "plus"}}
   {{/unless}}
@@ -7,6 +7,6 @@
     {{d-icon "times-circle"}}
   {{/if}}
 
-  <span class="docs-item-id tag-id">{{tag.id}}</span>
-  <span class="docs-item-count tag-count">{{tag.count}}</span>
+  <span class="resources-item-id tag-id">{{tag.id}}</span>
+  <span class="resources-item-count tag-count">{{tag.count}}</span>
 </a>

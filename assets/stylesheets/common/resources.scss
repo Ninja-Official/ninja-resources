@@ -1,4 +1,4 @@
-.docs-search-wrapper {
+.resources-search-wrapper {
   position: relative;
   width: 500px;
   .d-icon {
@@ -24,7 +24,7 @@
   }
 }
 
-.docs-search {
+.resources-search {
   align-items: center;
   background-color: var(--primary-very-low);
   display: flex;
@@ -34,20 +34,20 @@
     // More breathing room on larger screens
     margin-bottom: 2em;
   }
-  .docs-search-bar {
+  .resources-search-bar {
     height: 50px;
     margin-bottom: 0px;
     width: 100%;
   }
 }
-.docs-browse {
+.resources-browse {
   display: flex;
   .loading-container {
     display: flex;
     flex-basis: 100%;
     padding: 0.625em 0 0.625em 0.625em;
   }
-  .docs-results {
+  .resources-results {
     display: flex;
     flex-direction: column;
     flex-basis: 100%;
@@ -56,7 +56,7 @@
       padding-left: 0.625em;
     }
   }
-  .docs-filters {
+  .resources-filters {
     margin-top: 0.15em;
     flex: 0 1 20%;
     @include breakpoint(tablet, min-width) {
@@ -66,7 +66,7 @@
     // be more narrow than content if needed
     min-width: 175px;
   }
-  .docs-items {
+  .resources-items {
     padding: 0.57em 1em 1em 0;
 
     a {
@@ -79,13 +79,13 @@
       font-size: $font-up-1;
     }
 
-    .docs-item-count {
+    .resources-item-count {
       margin-left: auto;
       color: var(--primary-high);
       font-size: $font-down-1;
     }
 
-    .docs-item {
+    .resources-item {
       display: flex;
       align-items: center;
       cursor: pointer;
@@ -121,7 +121,7 @@
       font-weight: bold;
     }
   }
-  .docs-topic-list {
+  .resources-topic-list {
     flex-basis: 100%;
 
     th {
@@ -149,7 +149,7 @@
       font-weight: normal;
       font-size: $font-down-1;
     }
-    .docs-topic-link {
+    .resources-topic-link {
       color: var(--tertiary);
       cursor: pointer;
       display: inline-block;
@@ -159,10 +159,10 @@
       }
     }
   }
-  .docs-topic {
+  .resources-topic {
     display: flex;
     flex-direction: column;
-    .docs-nav-link {
+    .resources-nav-link {
       font-weight: 700;
       &.return {
         align-items: center;

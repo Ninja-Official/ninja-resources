@@ -1,14 +1,14 @@
 en:
   js:
     filters:
-      docs:
-        help: "browse docs topics"
-    docs:
-      title: "Docs"
+      resources:
+        help: "browse resources topics"
+    resources:
+      title: "Resources"
       column_titles:
         topic: "Topic"
         activity: "Activity"
-      no_topics: "No topics in Docs."
+      no_topics: "No topics in Resources."
       categories: "Categories"
       tags: "Tags"
       search:

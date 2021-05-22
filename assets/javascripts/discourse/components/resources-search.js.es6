@@ -4,7 +4,7 @@ import { action } from "@ember/object";
 import discourseDebounce from "discourse-common/lib/debounce";
 
 export default Component.extend({
-  classNames: "docs-search",
+  classNames: "resources-search",
 
   debouncedSearch(term) {
     // TODO: Use discouseDebounce when discourse 2.7 gets released.

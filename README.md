@@ -1,3 +1,3 @@
-# Discourse Docs
+# Discourse Resources
 
-https://meta.discourse.org/t/discourse-docs-documentation-management-plugin/130172/
+https://meta.discourse.org/t/discourse-resources-documentation-management-plugin/130172/

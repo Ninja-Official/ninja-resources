@@ -7,9 +7,9 @@
 zh_CN:
   js:
     filters:
-      docs:
+      resources:
         help: "浏览文档话题"
-    docs:
+    resources:
       title: "文档"
       column_titles:
         topic: "话题"

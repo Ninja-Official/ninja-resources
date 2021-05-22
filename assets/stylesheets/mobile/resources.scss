@@ -1,61 +1,61 @@
 .mobile-view {
-  .docs {
-    .docs-search-wrapper {
+  .resources {
+    .resources-search-wrapper {
       display: flex;
       justify-content: center;
     }
 
-    .docs-search {
+    .resources-search {
       font-size: $font-up-2;
       padding: 0.5em 0;
 
-      .docs-search-bar {
+      .resources-search-bar {
         width: calc(100vw - 2em);
       }
     }
-    .docs-browse {
+    .resources-browse {
       padding-bottom: 60px; // for DiscourseHub footer nav
-      .docs-items {
+      .resources-items {
         padding-right: 0;
       }
       flex-direction: column;
-      .docs-results .result-count {
+      .resources-results .result-count {
         padding-left: 0;
       }
-      .docs-topic-list {
+      .resources-topic-list {
         flex-basis: 100%;
       }
-      .docs-topic-link {
+      .resources-topic-link {
         padding-right: 0.25em;
       }
       .loading-container {
         padding: 0.625em 0;
       }
-      .docs-topic {
+      .resources-topic {
         width: calc(100vw - 20px);
       }
     }
   }
 
-  .docs-filters {
+  .resources-filters {
     margin-top: 0;
     background: var(--primary-very-low);
     padding: 0 0.5em;
-    .docs-items:first-of-type {
+    .resources-items:first-of-type {
       margin-top: 1em;
     }
-    + .docs-results {
+    + .resources-results {
       margin-top: 2em;
     }
   }
 
-  .archetype-docs-topic {
-    .docs-filters {
+  .archetype-resources-topic {
+    .resources-filters {
       display: none;
     }
   }
 
-  .docs-expander {
+  .resources-expander {
     margin: 1em 0 0 0;
     width: 100%;
   }

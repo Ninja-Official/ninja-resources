@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module Docs
-  class DocsController < ApplicationController
-    requires_plugin 'docs'
+module Resources
+  class ResourcesController < ApplicationController
+    requires_plugin 'resources'
 
     skip_before_action :check_xhr, only: [:index]
 
@@ -18,7 +18,7 @@ module Docs
         page: params[:page]
       }
 
-      query = Docs::Query.new(current_user, filters).list
+      query = Resources::Query.new(current_user, filters).list
 
       if filters[:topic].present?
         begin
@@ -46,7 +46,7 @@ module Docs
     end
 
     def get_topic(topic, current_user)
-      return nil unless topic_in_docs(topic.category_id, topic.tags)
+      return nil unless topic_in_resources(topic.category_id, topic.tags)
 
       topic_view = TopicView.new(topic.id, current_user)
       guardian = Guardian.new(current_user)
@@ -55,7 +55,7 @@ module Docs
     end
 
     def set_title
-      title = "#{I18n.t('js.docs.title')} - #{SiteSetting.title}"
+      title = "#{I18n.t('js.resources.title')} - #{SiteSetting.title}"
       if @topic
         topic_title = @topic['unicode_title'] || @topic['title']
         title = "#{topic_title} - #{title}"
@@ -63,10 +63,10 @@ module Docs
       title
     end
 
-    def topic_in_docs(category, tags)
-      category_match = Docs::Query.categories.include?(category.to_s)
+    def topic_in_resources(category, tags)
+      category_match = Resources::Query.categories.include?(category.to_s)
       tags = tags.pluck(:name)
-      tag_match = Docs::Query.tags.any? { |tag| tags.include?(tag) }
+      tag_match = Resources::Query.tags.any? { |tag| tags.include?(tag) }
 
       category_match || tag_match
     end

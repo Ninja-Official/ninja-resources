@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Docs::DocsController do
+describe Resources::ResourcesController do
   fab!(:category) { Fabricate(:category) }
   fab!(:topic) { Fabricate(:topic, title: "I love carrot today", category: category) }
   fab!(:topic2) { Fabricate(:topic, title: "I love pineapple today", category: category) }
@@ -10,15 +10,15 @@ describe Docs::DocsController do
 
   before do
     SiteSetting.tagging_enabled = true
-    SiteSetting.docs_enabled = true
-    SiteSetting.docs_categories = category.id.to_s
-    SiteSetting.docs_tags = 'test'
+    SiteSetting.resources_enabled = true
+    SiteSetting.resources_categories = category.id.to_s
+    SiteSetting.resources_tags = 'test'
   end
 
-  describe 'docs data' do
+  describe 'resources data' do
     context 'when any user' do
       it 'should return the right response' do
-        get '/docs.json'
+        get '/resources.json'
 
         expect(response.status).to eq(200)
 
@@ -31,7 +31,7 @@ describe Docs::DocsController do
       end
 
       it 'should return a topic count' do
-        get '/docs.json'
+        get '/resources.json'
 
         json = response.parsed_body
         topic_count = json['topic_count']
@@ -40,17 +40,17 @@ describe Docs::DocsController do
       end
     end
 
-    context 'when some docs topics are private' do
+    context 'when some resources topics are private' do
       let!(:group) { Fabricate(:group) }
       let!(:private_category) { Fabricate(:private_category, group: group) }
       let!(:private_topic) { Fabricate(:topic, category: private_category) }
 
       before do
-        SiteSetting.docs_categories = "#{category.id}|#{private_category.id}"
+        SiteSetting.resources_categories = "#{category.id}|#{private_category.id}"
       end
 
       it 'should not show topics in private categories without permissions' do
-        get '/docs.json'
+        get '/resources.json'
 
         json = JSON.parse(response.body)
         topics = json['topics']['topic_list']['topics']
@@ -62,7 +62,7 @@ describe Docs::DocsController do
         admin = Fabricate(:admin)
         sign_in(admin)
 
-        get '/docs.json'
+        get '/resources.json'
 
         json = JSON.parse(response.body)
         topics = json['topics']['topic_list']['topics']
@@ -76,7 +76,7 @@ describe Docs::DocsController do
       fab!(:tag3) { Fabricate(:tag, topics: [topic], name: 'test3') }
 
       it 'should return a list filtered by tag' do
-        get '/docs.json?tags=test'
+        get '/resources.json?tags=test'
 
         expect(response.status).to eq(200)
 
@@ -87,7 +87,7 @@ describe Docs::DocsController do
       end
 
       it 'should properly filter with more than two tags' do
-        get '/docs.json?tags=test%7ctest2%7ctest3'
+        get '/resources.json?tags=test%7ctest2%7ctest3'
 
         expect(response.status).to eq(200)
 
@@ -105,11 +105,11 @@ describe Docs::DocsController do
       let!(:topic3) { Fabricate(:topic, category: category2) }
 
       before do
-        SiteSetting.docs_categories = "#{category.id}|#{category2.id}"
+        SiteSetting.resources_categories = "#{category.id}|#{category2.id}"
       end
 
       it 'should return a list filtered by category' do
-        get "/docs.json?category=#{category2.id}"
+        get "/resources.json?category=#{category2.id}"
 
         expect(response.status).to eq(200)
 
@@ -125,7 +125,7 @@ describe Docs::DocsController do
     context 'when ordering results' do
       context 'by title' do
         it 'should return the list ordered descending' do
-          get "/docs.json?order=title"
+          get "/resources.json?order=title"
 
           expect(response.status).to eq(200)
 
@@ -137,7 +137,7 @@ describe Docs::DocsController do
         end
 
         it 'should return the list ordered ascending with an additional parameter' do
-          get "/docs.json?order=title&ascending=true"
+          get "/resources.json?order=title&ascending=true"
 
           expect(response.status).to eq(200)
 
@@ -155,7 +155,7 @@ describe Docs::DocsController do
         end
 
         it 'should return the list ordered descending' do
-          get "/docs.json?order=activity"
+          get "/resources.json?order=activity"
 
           expect(response.status).to eq(200)
 
@@ -167,7 +167,7 @@ describe Docs::DocsController do
         end
 
         it 'should return the list ordered ascending with an additional parameter' do
-          get "/docs.json?order=activity&ascending=true"
+          get "/resources.json?order=activity&ascending=true"
 
           expect(response.status).to eq(200)
 
@@ -197,7 +197,7 @@ describe Docs::DocsController do
       end
 
       it 'should correctly filter topics' do
-        get "/docs.json?search=banana"
+        get "/resources.json?search=banana"
 
         expect(response.status).to eq(200)
 
@@ -211,7 +211,7 @@ describe Docs::DocsController do
 
         expect(topics.size).to eq(2)
 
-        get "/docs.json?search=walk"
+        get "/resources.json?search=walk"
 
         json = JSON.parse(response.body)
         topics = json['topics']['topic_list']['topics']
@@ -225,29 +225,29 @@ describe Docs::DocsController do
       let!(:non_ke_topic) { Fabricate(:topic) }
 
       it 'should correctly grab the topic' do
-        get "/docs.json?topic=#{topic.id}"
+        get "/resources.json?topic=#{topic.id}"
 
         expect(response.parsed_body['topic']['id']).to eq(topic.id)
       end
 
-      it 'should get topics matching a selected docs tag or category' do
-        get "/docs.json?topic=#{non_ke_topic.id}"
+      it 'should get topics matching a selected resources tag or category' do
+        get "/resources.json?topic=#{non_ke_topic.id}"
 
         expect(response.parsed_body['topic']).to be_blank
       end
 
-      it 'should return a docs topic when only tags are added to settings' do
-        SiteSetting.docs_categories = nil
+      it 'should return a resources topic when only tags are added to settings' do
+        SiteSetting.resources_categories = nil
 
-        get "/docs.json?topic=#{topic.id}"
+        get "/resources.json?topic=#{topic.id}"
 
         expect(response.parsed_body['topic']['id']).to eq(topic.id)
       end
 
-      it 'should return a docs topic when only categories are added to settings' do
-        SiteSetting.docs_tags = nil
+      it 'should return a resources topic when only categories are added to settings' do
+        SiteSetting.resources_tags = nil
 
-        get "/docs.json?topic=#{topic.id}"
+        get "/resources.json?topic=#{topic.id}"
 
         expect(response.parsed_body['topic']['id']).to eq(topic.id)
       end

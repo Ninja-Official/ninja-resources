@@ -3,7 +3,7 @@ import { reads } from "@ember/object/computed";
 import computed from "discourse-common/utils/decorators";
 
 export default Component.extend({
-  classNames: "docs-topic",
+  classNames: "resources-topic",
 
   originalPostContent: reads("post.cooked"),
 
@@ -29,12 +29,12 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
 
-    document.querySelector("body").classList.add("archetype-docs-topic");
+    document.querySelector("body").classList.add("archetype-resources-topic");
   },
 
   willDestroyElement() {
     this._super(...arguments);
 
-    document.querySelector("body").classList.remove("archetype-docs-topic");
+    document.querySelector("body").classList.remove("archetype-resources-topic");
   },
 });

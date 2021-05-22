@@ -1,6 +1,6 @@
 import DiscourseRoute from "discourse/routes/discourse";
 import I18n from "I18n";
-import Docs from "discourse/plugins/discourse-docs/discourse/models/docs";
+import Resources from "discourse/plugins/discourse-resources/discourse/models/resources";
 
 export default DiscourseRoute.extend({
   queryParams: {
@@ -17,16 +17,16 @@ export default DiscourseRoute.extend({
   },
 
   model(params) {
-    this.controllerFor("docs.index").set("isLoading", true);
-    return Docs.list(params).then((result) => {
-      this.controllerFor("docs.index").set("isLoading", false);
+    this.controllerFor("resources.index").set("isLoading", true);
+    return Resources.list(params).then((result) => {
+      this.controllerFor("resources.index").set("isLoading", false);
       return result;
     });
   },
 
   titleToken() {
     const model = this.currentModel;
-    const pageTitle = I18n.t("docs.title");
+    const pageTitle = I18n.t("resources.title");
     if (model.topic.title && model.topic.category_id) {
       const title = model.topic.unicode_title || model.topic.title;
       const categoryName = this.site.categories.findBy(

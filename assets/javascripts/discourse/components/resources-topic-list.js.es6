@@ -3,7 +3,7 @@ import { action } from "@ember/object";
 import discourseComputed from "discourse-common/utils/decorators";
 
 export default Component.extend({
-  classNames: "docs-topic-list",
+  classNames: "resources-topic-list",
 
   @discourseComputed("order")
   sortTitle(order) {
@@ -17,7 +17,7 @@ export default Component.extend({
 
   // need to handle clicks here since links are in a raw view
   click(e) {
-    if (e.target.classList.contains("docs-topic-link")) {
+    if (e.target.classList.contains("resources-topic-link")) {
       const topicId = e.target.dataset.topicId;
       this.selectTopic(topicId);
       return false;

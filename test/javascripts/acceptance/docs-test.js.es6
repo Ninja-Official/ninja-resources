@@ -1,16 +1,16 @@
 import { acceptance, count, query } from "helpers/qunit-helpers";
-import docsFixtures from "../fixtures/docs";
+import resourcesFixtures from "../fixtures/resources";
 
-acceptance("Docs", function (needs) {
+acceptance("Resources", function (needs) {
   needs.user();
   needs.settings({
-    docs_enabled: true,
+    resources_enabled: true,
   });
 
   needs.pretender((server, helper) => {
-    server.get("/docs.json", (request) => {
+    server.get("/resources.json", (request) => {
       if (request.queryParams.category === "1") {
-        const fixture = JSON.parse(JSON.stringify(docsFixtures));
+        const fixture = JSON.parse(JSON.stringify(resourcesFixtures));
 
         return helper.response(
           Object.assign(fixture, {
@@ -24,7 +24,7 @@ acceptance("Docs", function (needs) {
           })
         );
       } else {
-        return helper.response(docsFixtures);
+        return helper.response(resourcesFixtures);
       }
     });
   });
@@ -32,21 +32,21 @@ acceptance("Docs", function (needs) {
   test("index page", async function (assert) {
     await visit("/");
     await click("#toggle-hamburger-menu");
-    await click(".docs-link");
+    await click(".resources-link");
 
-    assert.equal(query(".docs-category").innerText.trim(), "bug 119");
-    assert.equal(query(".docs-tag").innerText.trim(), "something 74");
+    assert.equal(query(".resources-category").innerText.trim(), "bug 119");
+    assert.equal(query(".resources-tag").innerText.trim(), "something 74");
     assert.equal(
-      query(".docs-topic-link").innerText.trim(),
+      query(".resources-topic-link").innerText.trim(),
       "Importing from Software X"
     );
   });
 
   test("selecting a category", async function (assert) {
-    await visit("/docs");
-    assert.equal(count(".docs-category.selected"), 0);
+    await visit("/resources");
+    assert.equal(count(".resources-category.selected"), 0);
 
-    await click(".docs-item.docs-category");
-    assert.equal(count(".docs-category.selected"), 1);
+    await click(".resources-item.resources-category");
+    assert.equal(count(".resources-category.selected"), 1);
   });
 });

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_dependency 'docs_constraint'
+require_dependency 'resources_constraint'
 
-Docs::Engine.routes.draw do
-  get '/' => 'docs#index', constraints: DocsConstraint.new
-  get '.json' => 'docs#index', constraints: DocsConstraint.new
+Resources::Engine.routes.draw do
+  get '/' => 'resources#index', constraints: ResourcesConstraint.new
+  get '.json' => 'resources#index', constraints: ResourcesConstraint.new
 end

@@ -2,7 +2,7 @@
   <table class="topic-list">
     <thead>
       <th role="button" {{action "sortListTitle"}}>
-        {{i18n "docs.column_titles.topic"}}
+        {{i18n "resources.column_titles.topic"}}
 
         {{#if sortTitle}}
           {{#if ascending}}
@@ -14,7 +14,7 @@
       </th>
 
       <th role="button" {{action "sortListActivity"}}>
-        {{i18n "docs.column_titles.activity"}}
+        {{i18n "resources.column_titles.activity"}}
 
         {{#if sortActivity}}
           {{#if ascending}}
@@ -28,7 +28,7 @@
 
     <tbody>
       {{#each topics as |topic|}}
-        {{raw "docs-topic-list-item" topic=topic}}
+        {{raw "resources-topic-list-item" topic=topic}}
       {{/each}}
     </tbody>
   </table>

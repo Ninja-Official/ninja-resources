@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class DocsConstraint
+class ResourcesConstraint
   def matches?(_request)
-    SiteSetting.docs_enabled
+    SiteSetting.resources_enabled
   end
 end
